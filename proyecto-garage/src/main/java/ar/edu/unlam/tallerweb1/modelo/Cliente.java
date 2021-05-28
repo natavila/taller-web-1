@@ -1,38 +1,76 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
 
 @Entity
-public class Cliente extends Usuario{
+public class Cliente{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String nombre;
+	private String apellido;
 	private Integer dni;
 	private String sexo;
-	
-	@ManyToOne
-	private Usuario usuariosCliente;
-	
+	private String email;
+	private String password;
+
 	@OneToOne
-	private Auto auto;
+	Billetera billetera; 
+	
+	@OneToMany
+	List<Auto> autos;
 	
 	
 	
-	public Auto getAuto() {
-		return auto;
+	public Billetera getBilletera() {
+		return billetera;
 	}
-	public void setAuto(Auto auto) {
-		this.auto = auto;
+	public void setBilletera(Billetera billetera) {
+		this.billetera = billetera;
 	}
+	public List<Auto> getAutos() {
+		return autos;
+	}
+	public void setAutos(List<Auto> autos) {
+		this.autos = autos;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getApellido() {
+		return apellido;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	
 	public Integer getDni() {
 		return dni;
 	}
@@ -52,16 +90,14 @@ public class Cliente extends Usuario{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Usuario getUsuariosCliente() {
-		return usuariosCliente;
-	}
-	public void setUsuariosCliente(Usuario usuariosCliente) {
-		this.usuariosCliente = usuariosCliente;
-	}
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", dni=" + dni + ", sexo=" + sexo + ", usuariosCliente=" + usuariosCliente + "]";
+		return "Cliente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", sexo=" + sexo
+				+ ", email=" + email + ", password=" + password + ", autos=" + autos + "]";
 	}
+	
+	
+
 	
 	
 }
